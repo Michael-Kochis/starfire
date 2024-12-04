@@ -17,4 +17,16 @@ public class PersonService {
     public List<Person> getAllPersons() {
         return pr.findAll();
     }
+
+    public Person getPersonByName(String namae) {
+        return pr.findPersonByName(namae)
+                .orElse(null);
+    }
+
+    public List<Person> getPersonsByMask(String namae) {
+        return pr.findPersonByMask(namae);
+    }
+    public Person wearMask(String pName, String mName) {
+        return pr.wearMask(pName, mName);
+    }
 }
