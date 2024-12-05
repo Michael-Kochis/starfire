@@ -29,4 +29,12 @@ public class PersonService {
     public Person wearMask(String pName, String mName) {
         return pr.wearMask(pName, mName);
     }
+
+    public Person updatePersonByID(Long id, String name, String gender) {
+        return pr.updatePersonByID(id, name, gender);
+    }
+
+    public Person updatePersonByID(Person other) {
+        return pr.updatePersonByID(other.getId(), other.getName(), other.getGender());
+    }
 }

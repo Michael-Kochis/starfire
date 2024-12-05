@@ -15,4 +15,10 @@ public interface PersonRepository extends Neo4jRepository<Person, Long> {
 
     @Query("MERGE (p :Person {name: $pName})<-[:CIVILIAN_ID]-(m :Mask {name: $mName}) return p")
     Person wearMask(String pName, String mName);
+
+    @Query("MATCH (p :Person) WHERE ID(p) = $id " +
+            "SET p.name = $name " +
+            "SET p.gender = $gender " +
+            "RETURN p")
+    Person updatePersonByID(Long id, String name, String gender);
 }

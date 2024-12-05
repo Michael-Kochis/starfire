@@ -1,6 +1,7 @@
 package com.kiragames.starfire.controller;
 
 import com.kiragames.starfire.entity.Person;
+import com.kiragames.starfire.DTO.PersonDTO;
 import com.kiragames.starfire.request.WearMaskRequest;
 import com.kiragames.starfire.service.PersonService;
 import org.springframework.http.HttpStatus;
@@ -44,5 +45,10 @@ public class PersonController {
         } else {
             return null;
         }
+    }
+
+    @PutMapping("/")
+    public ResponseEntity<Person> updatePerson(@RequestBody PersonDTO other) {
+        return new ResponseEntity<>(ps.updatePersonByID(other.getId(), other.getName(), other.getGender()), HttpStatus.OK);
     }
 }
