@@ -36,21 +36,26 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth.requestMatchers(
                         "/api/vi/auth/me",
                         "/api/v1/person/wearMask"
-                    ).authenticated().anyRequest().permitAll()
+                    ).authenticated()
+                        .anyRequest().permitAll()
                 )
                 .userDetailsService(ls)
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
 
+    @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
 
-        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:3000",
-                "https://127.0.0.1:3000"));
+//        corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
+      corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:3000",
+                  "http://127.0.0.1:3000",
+                 "https://localhost:3000",
+                  "https://127.0.0.1:3000"));
         corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"));
         corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.setAllowedHeaders(Arrays.asList("Authorization", "Request-Type", "Content-Type"));
+        corsConfiguration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Request-Type"));
         corsConfiguration.setExposedHeaders(Arrays.asList("X-Get-Header"));
         corsConfiguration.setMaxAge(3600L);
 
