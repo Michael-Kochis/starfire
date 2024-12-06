@@ -23,8 +23,8 @@ public class LogonController {
     }
 
     @GetMapping("/me")
-    public String loggedInUser(Principal principal) {
-        return principal.getName();
+    public Principal loggedInUser(Principal principal) {
+        return principal;
     }
 
     @PostMapping("/")
