@@ -1,2 +1,2 @@
 # starfire
-Neo4J
+Neo4J back end for the Starfire Online application.
