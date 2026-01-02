@@ -11,7 +11,7 @@ import org.springframework.data.neo4j.core.schema.Node;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Person {
+public class Persona {
     @Id
     @GeneratedValue
     private Long id;

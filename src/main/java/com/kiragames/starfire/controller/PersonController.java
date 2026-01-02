@@ -1,6 +1,6 @@
 package com.kiragames.starfire.controller;
 
-import com.kiragames.starfire.entity.Person;
+import com.kiragames.starfire.entity.Persona;
 import com.kiragames.starfire.DTO.PersonDTO;
 import com.kiragames.starfire.request.WearMaskRequest;
 import com.kiragames.starfire.service.PersonService;
@@ -20,13 +20,13 @@ public class PersonController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<Person>> allPerson() {
+    public ResponseEntity<List<Persona>> allPerson() {
         return new ResponseEntity<>(ps.getAllPersons(), HttpStatus.OK);
     }
 
     @GetMapping("/{namae}")
-    public ResponseEntity<Person> personByName(@PathVariable String namae) {
-        Person person = ps.getPersonByName(namae);
+    public ResponseEntity<Persona> personByName(@PathVariable String namae) {
+        Persona person = ps.getPersonByName(namae);
         if (person != null) {
             return new ResponseEntity<>(person, HttpStatus.OK);
         } else {
@@ -35,7 +35,7 @@ public class PersonController {
     }
 
     @PostMapping ("/wearMask")
-    public ResponseEntity<Person> wearMask(@RequestBody WearMaskRequest request) {
+    public ResponseEntity<Persona> wearMask(@RequestBody WearMaskRequest request) {
         String person = request.getPersonName();
         String mask = request.getMaskName();
 
@@ -48,7 +48,7 @@ public class PersonController {
     }
 
     @PutMapping("/")
-    public ResponseEntity<Person> updatePerson(@RequestBody PersonDTO other) {
+    public ResponseEntity<Persona> updatePerson(@RequestBody PersonDTO other) {
         return new ResponseEntity<>(ps.updatePersonByID(other.getId(), other.getName(), other.getGender()), HttpStatus.OK);
     }
 }

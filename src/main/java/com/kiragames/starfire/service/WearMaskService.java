@@ -1,6 +1,6 @@
 package com.kiragames.starfire.service;
 
-import com.kiragames.starfire.entity.Person;
+import com.kiragames.starfire.entity.Persona;
 import com.kiragames.starfire.repository.PersonRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ public class WearMaskService {
         this.pr = pr;
     }
 
-    public Person wearMask(String pName, String mName) {
+    public Persona wearMask(String pName, String mName) {
         if (pName != null && !pName.isEmpty()
             && mName != null && !mName.isEmpty()) {
             return pr.wearMask(pName, mName);

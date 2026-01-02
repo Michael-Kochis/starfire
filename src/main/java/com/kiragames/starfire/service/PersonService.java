@@ -1,6 +1,6 @@
 package com.kiragames.starfire.service;
 
-import com.kiragames.starfire.entity.Person;
+import com.kiragames.starfire.entity.Persona;
 import com.kiragames.starfire.repository.PersonRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,27 +14,27 @@ public class PersonService {
         this.pr = person;
     }
 
-    public List<Person> getAllPersons() {
+    public List<Persona> getAllPersons() {
         return pr.findAll();
     }
 
-    public Person getPersonByName(String namae) {
+    public Persona getPersonByName(String namae) {
         return pr.findPersonByName(namae)
                 .orElse(null);
     }
 
-    public List<Person> getPersonsByMask(String namae) {
+    public List<Persona> getPersonsByMask(String namae) {
         return pr.findPersonByMask(namae);
     }
-    public Person wearMask(String pName, String mName) {
+    public Persona wearMask(String pName, String mName) {
         return pr.wearMask(pName, mName);
     }
 
-    public Person updatePersonByID(Long id, String name, String gender) {
+    public Persona updatePersonByID(Long id, String name, String gender) {
         return pr.updatePersonByID(id, name, gender);
     }
 
-    public Person updatePersonByID(Person other) {
+    public Persona updatePersonByID(Persona other) {
         return pr.updatePersonByID(other.getId(), other.getName(), other.getGender());
     }
 }

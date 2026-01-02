@@ -1,24 +1,24 @@
 package com.kiragames.starfire.repository;
 
-import com.kiragames.starfire.entity.Person;
+import com.kiragames.starfire.entity.Persona;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface PersonRepository extends Neo4jRepository<Person, Long> {
-    Optional<Person> findPersonByName(String namae);
+public interface PersonRepository extends Neo4jRepository<Persona, Long> {
+    Optional<Persona> findPersonByName(String namae);
 
-    @Query("MATCH(p :Person)<-[:CIVILIAN_ID]-(m :Mask {name: $maskName}) return p")
-    List<Person> findPersonByMask(String maskName);
+    @Query("MATCH(p :Persona)<-[:CIVILIAN_ID]-(m :Mask {name: $maskName}) return p")
+    List<Persona> findPersonByMask(String maskName);
 
-    @Query("MERGE (p :Person {name: $pName})<-[:CIVILIAN_ID]-(m :Mask {name: $mName}) return p")
-    Person wearMask(String pName, String mName);
+    @Query("MERGE (p :Persona {name: $pName})<-[:CIVILIAN_ID]-(m :Mask {name: $mName}) return p")
+    Persona wearMask(String pName, String mName);
 
-    @Query("MATCH (p :Person) WHERE ID(p) = $id " +
+    @Query("MATCH (p :Persona) WHERE ID(p) = $id " +
             "SET p.name = $name " +
             "SET p.gender = $gender " +
             "RETURN p")
-    Person updatePersonByID(Long id, String name, String gender);
+    Persona updatePersonByID(Long id, String name, String gender);
 }
