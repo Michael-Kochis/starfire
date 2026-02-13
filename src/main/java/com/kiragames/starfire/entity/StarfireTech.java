@@ -20,6 +20,7 @@ public class StarfireTech {
 
     private String name;
     private String stub;
+    private String ruleset;
     private String start;
     private List<Integer> knots;
 }

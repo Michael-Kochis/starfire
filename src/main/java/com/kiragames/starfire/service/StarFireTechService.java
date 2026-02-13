@@ -15,6 +15,10 @@ public class StarFireTechService {
     }
 
     public List<StarfireTech> getAllTechs() {
-        return this.tr.findAll();
+        List<StarfireTech> returnThis = this.tr.findAll();
+        for (StarfireTech tech : returnThis) {
+            tech.setElementId("[REDACTED]");
+        }
+        return returnThis;
     }
 }
