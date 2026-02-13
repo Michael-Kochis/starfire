@@ -30,11 +30,11 @@ public class PersonService {
         return pr.wearMask(pName, mName);
     }
 
-    public Persona updatePersonByID(Long id, String name, String gender) {
-        return pr.updatePersonByID(id, name, gender);
+    public Persona updatePersonByID(String elementId, String name, String gender) {
+        return pr.updatePersonByID(elementId, name, gender);
     }
 
     public Persona updatePersonByID(Persona other) {
-        return pr.updatePersonByID(other.getId(), other.getName(), other.getGender());
+        return pr.updatePersonByID(other.getElementId(), other.getName(), other.getGender());
     }
 }

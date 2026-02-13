@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PersonDTO {
-    private Long id;
+    private String elementId;
     private String name;
     private String gender;
 }

@@ -14,7 +14,7 @@ import org.springframework.data.neo4j.core.schema.Node;
 public class Persona {
     @Id
     @GeneratedValue
-    private Long id;
+    private String elementId;
     private String name;
     private String gender;
 }

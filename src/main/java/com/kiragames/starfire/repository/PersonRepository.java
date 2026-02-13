@@ -7,7 +7,7 @@ import org.springframework.data.neo4j.repository.query.Query;
 import java.util.List;
 import java.util.Optional;
 
-public interface PersonRepository extends Neo4jRepository<Persona, Long> {
+public interface PersonRepository extends Neo4jRepository<Persona, String> {
     Optional<Persona> findPersonByName(String namae);
 
     @Query("MATCH(p :Persona)<-[:CIVILIAN_ID]-(m :Mask {name: $maskName}) return p")
@@ -20,5 +20,5 @@ public interface PersonRepository extends Neo4jRepository<Persona, Long> {
             "SET p.name = $name " +
             "SET p.gender = $gender " +
             "RETURN p")
-    Persona updatePersonByID(Long id, String name, String gender);
+    Persona updatePersonByID(String elementId, String name, String gender);
 }

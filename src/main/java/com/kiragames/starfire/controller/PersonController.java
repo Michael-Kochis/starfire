@@ -50,6 +50,6 @@ public class PersonController {
 
     @PutMapping("/")
     public ResponseEntity<Persona> updatePerson(@RequestBody PersonDTO other) {
-        return new ResponseEntity<>(ps.updatePersonByID(other.getId(), other.getName(), other.getGender()), HttpStatus.OK);
+        return new ResponseEntity<>(ps.updatePersonByID(other.getElementId(), other.getName(), other.getGender()), HttpStatus.OK);
     }
 }
