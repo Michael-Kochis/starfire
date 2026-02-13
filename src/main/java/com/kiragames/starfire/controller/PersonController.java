@@ -21,6 +21,7 @@ public class PersonController {
 
     @GetMapping("/")
     public ResponseEntity<List<Persona>> allPerson() {
+
         return new ResponseEntity<>(ps.getAllPersons(), HttpStatus.OK);
     }
 
