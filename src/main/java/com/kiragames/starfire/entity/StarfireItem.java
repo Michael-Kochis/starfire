@@ -4,10 +4,7 @@ import com.kiragames.starfire.DTO.TechItemDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.neo4j.core.schema.GeneratedValue;
-import org.springframework.data.neo4j.core.schema.Id;
-import org.springframework.data.neo4j.core.schema.Node;
-import org.springframework.data.neo4j.core.schema.Property;
+import org.springframework.data.neo4j.core.schema.*;
 
 import java.util.Optional;
 
@@ -32,10 +29,10 @@ public class StarfireItem {
     private Integer size;
 
     @Property("civcost")
-    private Float civcost;
+    private Double civcost;
 
     @Property("drive")
-    private Float drive;
+    private Double drive;
 
     @Property("min")
     private Integer min;
@@ -43,15 +40,19 @@ public class StarfireItem {
     @Property("max")
     private Integer max;
 
-    public void copyTechItemDTO(TechItemDTO techItemDTO) {
-        this.setSl(techItemDTO.getSl());
-        this.setCost(techItemDTO.getCost());
-        if (techItemDTO.getSize() != null) {
-            this.setSize(techItemDTO.getSize());
+    @Relationship(type = "TECH_ITEM")
+    private TechItemDTO techItem;
+
+    public void copyTechItemDTO() {
+        this.setRuleset(this.techItem.getRuleset());
+        this.setSl(this.techItem.getSl());
+        this.setCost(this.techItem.getCost());
+        if (this.techItem.getSize() != null) {
+            this.setSize(this.techItem.getSize());
         }
-        this.setCivcost(techItemDTO.getCivcost());
-        this.setDrive(techItemDTO.getDrive());
-        this.setMin(techItemDTO.getMin());
-        this.setMax(techItemDTO.getMax());
+        this.setCivcost(this.techItem.getCivcost());
+        this.setDrive(this.techItem.getDrive());
+        this.setMin(this.techItem.getMin());
+        this.setMax(this.techItem.getMax());
     }
 }

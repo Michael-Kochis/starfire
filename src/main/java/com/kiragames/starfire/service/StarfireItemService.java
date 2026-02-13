@@ -19,8 +19,7 @@ public class StarfireItemService {
     public List<StarfireItem> findAllItems() {
         List<StarfireItem> returnThis = this.ir.findAll();
         for (StarfireItem item: returnThis) {
-            TechItemDTO relation = this.ir.findTechItemByStub(item.getStub());
-            item.copyTechItemDTO(relation);
+            item.copyTechItemDTO();
             item.setElementId("[REDACTED]");
         }
         return returnThis;
