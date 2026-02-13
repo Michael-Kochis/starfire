@@ -1,5 +1,6 @@
 package com.kiragames.starfire.entity;
 
+import com.kiragames.starfire.DTO.TechItemDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,23 +23,35 @@ public class StarfireItem {
     private String name;
     private String stub;
 
+    @Property("civstub")
     private String civstub;
 
     private String ruleset;
     private Integer sl;
-    private Float cost;
+    private Double cost;
     private Integer size;
 
     @Property("civcost")
-    private Optional<Float> civcost;
+    private Float civcost;
 
     @Property("drive")
-    private Optional<Float> drive;
+    private Float drive;
 
     @Property("min")
-    private Optional<Integer> min;
+    private Integer min;
 
     @Property("max")
-    private Optional<Integer> max;
+    private Integer max;
 
+    public void copyTechItemDTO(TechItemDTO techItemDTO) {
+        this.setSl(techItemDTO.getSl());
+        this.setCost(techItemDTO.getCost());
+        if (techItemDTO.getSize() != null) {
+            this.setSize(techItemDTO.getSize());
+        }
+        this.setCivcost(techItemDTO.getCivcost());
+        this.setDrive(techItemDTO.getDrive());
+        this.setMin(techItemDTO.getMin());
+        this.setMax(techItemDTO.getMax());
+    }
 }
