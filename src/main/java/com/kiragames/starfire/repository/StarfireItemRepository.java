@@ -8,6 +8,4 @@ import org.springframework.data.neo4j.repository.query.Query;
 
 
 public interface StarfireItemRepository extends Neo4jRepository<StarfireItem, String> {
-    @Query("MATCH (n:StarfireItem {stub: $stub})-[r:TECH_ITEM]->(t:StarfireTech) RETURN n, r, t")
-    TechItemDTO findTechItemByStub(String stub);
 }
