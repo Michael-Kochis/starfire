@@ -15,7 +15,6 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/v1/auth")
-@CrossOrigin(origins = "http://localhost:4200")
 public class LogonController {
     private final LogonService ls;
     private final CreateLogonService neo;
@@ -30,7 +29,7 @@ public class LogonController {
         return principal;
     }
 
-    @PostMapping("/logon")
+    @PostMapping("/login")
     public ResponseEntity<Logon> loginRequest(@RequestBody PerformLogonRequest request) {
         Logon logon = neo.loginUser(request);
 
@@ -43,7 +42,7 @@ public class LogonController {
         }
     }
 
-    @PostMapping("/")
+    @PostMapping("/register")
     public ResponseEntity<LogonDTO> registerLogon(@RequestBody CreateLogonRequest request) {
         Logon logon = neo.createLogon(request);
         LogonDTO dto = new LogonDTO();
