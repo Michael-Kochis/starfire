@@ -13,6 +13,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/v1/auth")
+@CrossOrigin(origins = "http://localhost:4200")
 public class LogonController {
     private final LogonService ls;
     private final CreateLogonService neo;
