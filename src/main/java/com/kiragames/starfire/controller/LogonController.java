@@ -5,6 +5,8 @@ import com.kiragames.starfire.entity.Logon;
 import com.kiragames.starfire.request.CreateLogonRequest;
 import com.kiragames.starfire.service.CreateLogonService;
 import com.kiragames.starfire.service.LogonService;
+import com.kiragames.starfire.request.PerformLogonRequest;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +28,19 @@ public class LogonController {
     @GetMapping("/me")
     public Principal loggedInUser(Principal principal) {
         return principal;
+    }
+
+    @PostMapping("/logon")
+    public ResponseEntity<Logon> loginRequest(@RequestBody PerformLogonRequest request) {
+        Logon logon = neo.loginUser(request);
+
+        if (logon == null) {
+            logon = new Logon();
+            return new ResponseEntity<>(logon, HttpStatus.FORBIDDEN);
+        } else {
+            System.out.println(logon.toString());
+            return new ResponseEntity<>(logon, HttpStatus.OK);
+        }
     }
 
     @PostMapping("/")

@@ -3,8 +3,10 @@ package com.kiragames.starfire.service;
 import com.kiragames.starfire.entity.Logon;
 import com.kiragames.starfire.repository.LogonRepository;
 import com.kiragames.starfire.request.CreateLogonRequest;
+import com.kiragames.starfire.request.PerformLogonRequest;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +34,23 @@ public class CreateLogonService implements UserDetailsService {
         neoLogon.setRoles(request.getRoles());
         neoLogon.setPassword(pwEncoder.encode(request.getPassword()));
 
-        lr.save(neoLogon);
+        neoLogon = lr.save(neoLogon);
+        neoLogon.setPassword("[REDACTED]");
 
         return neoLogon;
+    }
+
+    public Logon loginUser(PerformLogonRequest request) {
+        Logon logon = lr.findByUsername(request.getUsername()).orElse(null);
+
+        if (logon == null) {
+            return null;
+        } else {
+            if (pwEncoder.matches(request.getPassword(), logon.getPassword())) {
+                return logon;
+            } else {
+                return null;
+            }
+        }
     }
 }
